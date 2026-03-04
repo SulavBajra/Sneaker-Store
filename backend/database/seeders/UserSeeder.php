@@ -13,18 +13,25 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        $admin = User::firstOrCreate([
-            'name' => 'Admin',
-            'email' => 'admin@example.com',
-            'password' => Hash::make('password'),
-        ]);
+
+        $admin = User::withTrashed()->updateOrCreate(
+            ['email' => 'admin@example.com'],
+            ['name' => 'Admin',
+            'password' => Hash::make('password'),]
+        );
+        if($admin->trashed()){
+            $admin->restore();
+        }
         $admin->assignRole('admin');
 
-        $customer = User::firstOrCreate([
-            'name' => 'Customer',
-            'email' => 'customer@example.com',
-            'password' => Hash::make('password'),
-        ]);
+        $customer = User::withTrashed()->updateOrCreate(
+            ['email' => 'customer@example.com'],
+            ['name' => 'customer',
+            'password' => Hash::make('password'),]
+        );
+        if($customer->trashed()){
+            $customer->restore();
+        }
         $customer->assignRole('customer');
     }
 }

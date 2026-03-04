@@ -49,7 +49,7 @@ services:
             retries: 3
             timeout: 5s
     phpmyadmin:
-        image: 'phpmyadmin:latest'
+        image: 'phpmyadmin:5.2'
         ports:
             - 8080:80
         environment:
