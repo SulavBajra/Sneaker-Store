@@ -3,9 +3,9 @@
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
-use Illuminate\Support\Facades\Redirect;
 
 Route::inertia('/', 'Dashboard', [
     'canRegister' => Features::enabled(Features::registration()),
@@ -16,9 +16,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('brands', BrandController::class);
     Route::resource('users', UserController::class)
-    ->missing(function () {
-           return Redirect::route('users.index');
-    });
+        ->missing(function () {
+            return Redirect::route('users.index');
+        });
 });
 
 require __DIR__.'/settings.php';
