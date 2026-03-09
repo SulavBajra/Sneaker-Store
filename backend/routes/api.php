@@ -14,4 +14,3 @@ Route::get('/user', function (Request $request) {
 Route::middleware(['auth:sanctum', 'role:customer'])->group(function () {
     Route::post('/logout', LogoutController::class)->name('api.logout');
 });
-
