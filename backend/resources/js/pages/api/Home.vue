@@ -14,8 +14,12 @@ onMounted(async () => {
     try {
         const { data } = await axios.get(route('api.home'));
         products.value = data.data;
-    } catch (err: any) {
-        error.value = 'Failed to load products.' + err.message;
+    } catch (err: unknown) {
+        let message = 'Failed to load products.';
+        if (axios.isAxiosError(err) || err instanceof Error) {
+            message += err.message;
+        }
+        error.value = message;
     } finally {
         loading.value = false;
     }

@@ -18,8 +18,8 @@ class ProductHomeResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'slug' => $this->slug,
-            'description' => $this->description,
-            'price' => $this->product_variants_min_price,
+            'description' => $this->description ?? '',
+            'price' => $this->product_variants_min_price ?? 0,
             'category' => [
                 'id' => $this->category->id,
                 'name' => $this->category->name,

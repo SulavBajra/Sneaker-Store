@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductHomeResource;
 use App\Models\Product;
-use Illuminate\Http\Request;
 
 class ProductHomeController extends Controller
 {
